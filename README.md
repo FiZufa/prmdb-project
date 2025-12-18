@@ -1,18 +1,11 @@
 
+## 🧩 Module Responsibilities in the PMR-DB Workflow
 
-## Module Summary
-- `distributions.py`: 
-    - Define probability distributions and fitting.
-    - Implement(X|H) and P(H).
-    - Defines parametrics PDFs.
-- `probability_space.py`: Stores priors, likelihoods, and evidence.
-- `fusion.py`: Compute bayesian posterior P(H|X).
-- `pmrdb.py`: High-level interface for PMR-DB, executing pipelines.
-    Responsibilities:
-    - Register labels
-    - Register priors
-    - Register likelihood distributions
-    - Fit all likelihood using label data
-    - Evaluate posterior for a new observation
+| Module | Responsibility | Mathematical Role |
+|------|----------------|-------------------|
+| **distributions.py** | Implements parametric probability distributions (Gaussian, Beta, Dirichlet) and sampling utilities | Defines likelihood models P(X I H) and prior distributions P(H) |
+| **probability_space.py** | Manages hypotheses, priors, modality-wise likelihood functions, and posterior inference | Stores P(H), computes joint likelihood P(X I H), and applies Bayes’ theorem |
+| **fusion.py** | Combines evidence from multiple modalities and distributions | Performs probabilistic fusion: P(H I X) |
+| **pmrdb.py** | Orchestrates the full inference pipeline end-to-end | Executes Bayesian reasoning, uncertainty aggregation, and final hypothesis selection |
 
 ## Workflow
