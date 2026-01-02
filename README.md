@@ -14,20 +14,35 @@
 
     Test probability distributions (Gaussian, Beta, Dirichlet) in `module distribution.py`
     ```
-    === Testing GaussianDistribution ===
-    Sample mean: 4.992310387960001
-    Sample var : 3.969604187382648
-    PDF(5) = 0.19947114020071635
-    PDF(0) = 0.00876415024678427
+    === Testing GaussianDistribution  ===
+    Sample mean: 5.012878894805908
+    Sample var : 4.0353498458862305
+    PDF(5) = 0.1994711458683014
+    PDF(0) = 0.008764149621129036
+
+    - Analytical
+
+    Analytical posterior mean: 1.4468640089035034
+    Analytical posterior var : 0.004975124262273312
+
+    - Monte Carlo
+
+    Posterior sample mean: 1.4467772245407104
+    Posterior sample var : 0.005023485980927944
+
+    Mean error: 8.678436279296875e-05
+    Var error : 4.836171865463257e-05
+
+    ✅ Gaussian posterior verified successfully.
 
     === Testing BetaDistribution ===
-    Sample mean: 0.28419139780947145
-    Sample var : 0.025171948821774266
+    Sample mean: 0.2891784761173626
+    Sample var : 0.02602426518772302
     PDF(0.5) = 0.9374999999999999
     PDF(0.1) = 1.9682999999999997
 
     === Testing DirichletDistribution ===
-    Sample mean vector: [0.22231246 0.33271046 0.44497708]
+    Sample mean vector: [0.2220402  0.33528126 0.44267854]
     Row sums (should be 1): 1.0
     PDF([0.2, 0.3, 0.5]) = 7.560000000000013
     ```
