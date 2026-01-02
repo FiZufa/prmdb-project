@@ -2,22 +2,34 @@
 
 import numpy as np
 from scipy.stats import norm, beta, dirichlet
+# import networkx as nx
+import torch
+import math
 
 class GaussianDistribution:
     def __init__(self, mean, var):
-        self.mean = mean
-        self.var = var
-        self.std = np.sqrt(var)
+        self.mean = torch.as_tensor(mean, dtype=torch.float32)
+        self.var = torch.as_tensor(var, dtype=torch.float32)
+        self.std = torch.sqrt(self.var)
+
+        self.dist = torch.distributions.Normal(self.mean, self.std)
 
     def pdf(self, x):
-        return norm.pdf(x, self.mean, self.std)
+        x = torch.as_tensor(x, dtype=torch.float32)
+        return torch.exp(self.dist.log_prob(x))
+
+    def log_pdf(self, x):
+        x = torch.as_tensor(x, dtype=torch.float32)
+        return self.dist.log_prob(x)
 
     def sample(self, n=1):
-        return np.random.normal(self.mean, self.std, n)
+        return self.dist.sample((n,))
 
     @classmethod
     def from_pdf(cls, pdf_fn):
-        raise NotImplementedError("General non-parametric pdf construction not implemented.")
+        raise NotImplementedError(
+            "General non-parametric pdf construction not implemented."
+        )
 
 
 class BetaDistribution:
